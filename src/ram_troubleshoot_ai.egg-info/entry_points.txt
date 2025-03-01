@@ -1,0 +1,2 @@
+[console_scripts]
+ram_troubleshoot_ai = ram_troubleshoot_ai.genai:main
