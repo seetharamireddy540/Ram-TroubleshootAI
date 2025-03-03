@@ -1,5 +1,18 @@
-import sys
 import platform
+import sys
+
+
+def add(a: int, b: int) -> int:
+    """_summary_
+
+    Args:
+        a (int): _description_
+        b (int): _description_
+
+    Returns:
+        int: _description_
+    """
+    return a + b
 
 
 def main():
@@ -14,5 +27,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
 
+# %%

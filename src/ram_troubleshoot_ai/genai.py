@@ -1,12 +1,15 @@
-import boto3
 import json
+import os
+
+import boto3
 
 
 def list_foundation_models():
-    profile_name = 'prorca'
-    region_name = 'us-east-1'
+    print(os.name)
+    profile_name = "prorca"
+    region_name = "us-east-1"
     session = boto3.Session(profile_name=profile_name, region_name=region_name)
-    bedrock_client = session.client('bedrock')
+    bedrock_client = session.client("bedrock")
     try:
         response = bedrock_client.list_foundation_models()
         models = response["modelSummaries"]
@@ -18,28 +21,25 @@ def list_foundation_models():
 
 
 def invoke_model(prompt):
-    profile_name = 'prorca'
-    region_name = 'us-east-1'
+    profile_name = "prorca"
+    region_name = "us-east-1"
     session = boto3.Session(profile_name=profile_name, region_name=region_name)
-    bedrock_runtime = session.client('bedrock-runtime')
+    bedrock_runtime = session.client("bedrock-runtime")
     model_id = "anthropic.claude-3-sonnet-20240229-v1:0"  # Claude 3 Sonnet
-    
+
     try:
-        body = json.dumps({
-            "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": 1000,
-            "messages": [
-                {"role": "user", "content": prompt}
-            ]
-        })
-        
-        response = bedrock_runtime.invoke_model(
-            modelId=model_id,
-            body=body
+        body = json.dumps(
+            {
+                "anthropic_version": "bedrock-2023-05-31",
+                "max_tokens": 1000,
+                "messages": [{"role": "user", "content": prompt}],
+            }
         )
-        
-        response_body = json.loads(response['body'].read())
-        return response_body['content'][0]['text']
+
+        response = bedrock_runtime.invoke_model(modelId=model_id, body=body)
+
+        response_body = json.loads(response["body"].read())
+        return response_body["content"][0]["text"]
     except Exception as e:
         print(f"Error invoking model: {str(e)}")
         return None
@@ -48,7 +48,7 @@ def invoke_model(prompt):
 def main():
     print("Listing available foundation models:")
     list_foundation_models()
-    
+
     print("\nInvoking Claude 3 Sonnet model:")
     prompt = "Explain the concept of machine learning in one paragraph."
     response = invoke_model(prompt)

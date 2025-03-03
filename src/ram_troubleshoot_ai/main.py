@@ -1,8 +1,8 @@
-from fastapi import FastAPI
 from typing import Optional
-from pydantic import BaseModel
-import uvicorn
 
+import uvicorn
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
