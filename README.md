@@ -22,3 +22,4 @@ python -m pip install -U scipy
 
 # Install pandas
 python -m pip install -U pandas
+clear

@@ -1,25 +1,26 @@
-import platform
-import sys
-
-
 def add(a: int, b: int) -> int:
-    """_summary_
-
-    Args:
-        a (int): _description_
-        b (int): _description_
-
-    Returns:
-        int: _description_
-    """
     return a + b
 
 
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} says hello!")
+
+
+class Cat(Animal):
+    def speak(self):
+        print(f"{self.name} says meow!")
+
+
+class Dog(Animal):
+    def speak(self):
+        print(f"{self.name} says woof!")
+
+
 def main():
-    print(sys.implementation.name)
-    print(sys.version)
-    print(platform.python_implementation())
-    print("Hello World!")
     for i in range(3):
         for j in range(2):
             print(f"i={i}, j={j}")
@@ -27,5 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# %%
