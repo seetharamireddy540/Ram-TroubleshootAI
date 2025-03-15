@@ -1,3 +1,7 @@
-from module1 import Cat
+from module1 import Cat, Dog
 
-cat = Cat("Whiskers")
+if __name__ == "__main__":
+    cat = Cat("Whiskers")
+    dog = Dog("Buddy")
+    dog.speak()
+    cat.speak()
